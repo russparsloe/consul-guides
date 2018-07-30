@@ -20,7 +20,11 @@ cat <<CONFIG | sudo tee $CONSUL_CONFIG_FILE
   "ui": true,
   "server": true,
   "bootstrap_expect": ${consul_bootstrap},
-  "retry_join": ["provider=${provider} tag_key=Consul-Auto-Join tag_value=${name}"]
+  "retry_join": ["provider=${provider} tag_key=Consul-Auto-Join tag_value=${name}"],
+  "connect":{
+  "enabled": true,
+      "proxy": { "allow_managed_root": true    }
+      }
 }
 CONFIG
 
